@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
-const Nav = () => {
-  const [lat, setLat] = useState(51.509865);
-  const [lon, setLon] = useState(-0.118092);
+const Nav = ({ setLonLat }) => {
   return (
     <div>
-      <button>Set location</button>
+      <button onClick={setLonLat}>Set location</button>
     </div>
   );
 };

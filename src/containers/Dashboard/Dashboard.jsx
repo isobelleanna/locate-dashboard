@@ -1,35 +1,60 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import "./Dashboard.scss";
 import WeatherTile from "../../components/WeatherTile/WeatherTile";
 import Nav from "../../components/Nav/Nav";
+import { useGeolocated } from "react-geolocated";
 
 const Dashboard = () => {
-  const [message, setMessage] = useState("");
   const [lat, setLat] = useState(51.509865);
   const [lon, setLon] = useState(-0.118092);
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    useGeolocated({
+      positionOptions: {
+        enableHighAccuracy: false,
+      },
+      userDecisionTimeout: 5000,
+    });
+  const key = "5f472b7acba333cd8a035ea85a0d4d4c";
+  const [weather, setWeather] = useState([]);
 
-  const getLocation = () => {
-    if (!navigator.geolocation) {
-      setMessage("Geolocation is not supported by your browser");
-    } else {
-      setMessage("Locating...");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setMessage(null);
-          setLat(position.coords.latitude);
-          setLon(position.coords.longitude);
-        },
-        () => {
-          setMessage("Unable to retrieve your location");
-        }
-      );
-    }
+  const getWeather = async () => {
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json();
+    setWeather(data);
+    console.log(data);
   };
+
+  useEffect(() => {
+    getWeather();
+  }, []);
+
+  const setCoords = () => {
+    console.log(coords.latitude);
+    console.log(coords.longitude);
+  };
+
+  const setLonLat = () => {
+    setLat(coords.latitude);
+    setLon(coords.longitude);
+    getWeather();
+  };
+
   return (
     <div>
-      <Nav />
-      <WeatherTile message={message} lon={lon} lat={lat} />
+      <Nav setLonLat={setLonLat} />
+      <WeatherTile weather={weather} />
+      {!isGeolocationAvailable ? (
+        <div>Your browser does not support Geolocation</div>
+      ) : !isGeolocationEnabled ? (
+        <div>Geolocation is not enabled</div>
+      ) : coords ? (
+        setCoords()
+      ) : (
+        <div>Getting the location data&hellip; </div>
+      )}
     </div>
   );
 };
