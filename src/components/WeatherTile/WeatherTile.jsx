@@ -8,12 +8,14 @@ const WeatherTile = () => {
   const [lon, setLon] = useState(-0.118092);
   const key = "5f472b7acba333cd8a035ea85a0d4d4c";
   const [weather, setWeather] = useState([]);
+  const [message, setMessage] = useState("");
 
   const getWeather = async () => {
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`;
     const res = await fetch(url);
     const data = await res.json();
     setWeather(data);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -38,6 +40,7 @@ const WeatherTile = () => {
       <p className="weather-tile__humidity">
         Humidity: {weather.main.humidity}%
       </p>
+      <p>{message}</p>
     </div>
   );
 };
