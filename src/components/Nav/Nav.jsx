@@ -1,10 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import "./Nav.scss";
 
 const Nav = ({ setLonLat }) => {
   return (
-    <div>
-      <button onClick={setLonLat}>Set location</button>
+    <div className="nav">
+      <button onClick={setLonLat}>Set to Current Location</button>
     </div>
   );
 };

@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import "./Dashboard.scss";
 import WeatherTile from "../../components/WeatherTile/WeatherTile";
+import WelcomeTile from "../../components/WelcomeTile/WelcomeTile";
+import "./Dashboard.scss";
 import Nav from "../../components/Nav/Nav";
 import { useGeolocated } from "react-geolocated";
 
@@ -61,18 +63,21 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className="dashboard">
       <Nav setLonLat={setLonLat} />
-      <WeatherTile
-        weather={weather}
-        city={city}
-        temp={temp}
-        icon={icon}
-        description={description}
-        feelsLike={feelsLike}
-        wind={wind}
-        humidity={humidity}
-      />
+      <div className="dashboard__content">
+        <WelcomeTile />
+        <WeatherTile
+          weather={weather}
+          city={city}
+          temp={temp}
+          icon={icon}
+          description={description}
+          feelsLike={feelsLike}
+          wind={wind}
+          humidity={humidity}
+        />
+      </div>
       {!isGeolocationAvailable ? (
         <div>Your browser does not support Geolocation</div>
       ) : !isGeolocationEnabled ? (
