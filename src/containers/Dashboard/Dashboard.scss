@@ -1,4 +1,7 @@
+@use "../../assets/sass/variables" as *;
 .dashboard {
+  background-color: $welcome-background;
+  padding-bottom: 30vh;
   &__content {
     display: flex;
     align-items: flex-start;

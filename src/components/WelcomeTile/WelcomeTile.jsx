@@ -13,10 +13,10 @@ const WelcomeTile = () => {
     <div className="welcome">
       <h1>Welcome to Dashboard</h1>
       <p>
-        {day}/{month}/{year}
+        Today is {day}/{month}/{year}
       </p>
       <p>
-        {hours}:{minutes}
+        Current Time {hours}:{minutes}
       </p>
       <img className="welcome__icon" src={Welcome} alt="welcome" />
     </div>

@@ -1,4 +1,8 @@
+@use "../../assets/sass/variables" as *;
 .welcome {
+  font-family: $font-headings;
+  background-color: $welcome-background;
+  padding: 2vh 5vw;
   &__icon {
     width: 20vw;
     height: 25vh;

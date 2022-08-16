@@ -1,5 +1,19 @@
+@use "../../assets/sass/variables" as *;
 .nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $welcome-background;
+  &__button {
+    font-family: $font-paragraphs;
+    margin: 10vh 0;
+    color: $button-text;
+    background-color: $button-background;
+    border: none;
+    padding: 1vh 1vw;
+    &:hover {
+      color: $button-background;
+      background-color: $button-text;
+    }
+  }
 }

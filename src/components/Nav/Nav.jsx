@@ -4,7 +4,9 @@ import "./Nav.scss";
 const Nav = ({ setLonLat }) => {
   return (
     <div className="nav">
-      <button onClick={setLonLat}>Set to Current Location</button>
+      <button className="nav__button" onClick={setLonLat}>
+        Set to Current Location
+      </button>
     </div>
   );
 };
