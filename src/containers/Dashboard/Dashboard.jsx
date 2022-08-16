@@ -9,8 +9,8 @@ import Nav from "../../components/Nav/Nav";
 import { useGeolocated } from "react-geolocated";
 
 const Dashboard = () => {
-  const [lat, setLat] = useState(51.509865);
-  const [lon, setLon] = useState(-0.118092);
+  const [lat, setLat] = useState(40.73061);
+  const [lon, setLon] = useState(-73.935242);
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGeolocated({
       positionOptions: {
